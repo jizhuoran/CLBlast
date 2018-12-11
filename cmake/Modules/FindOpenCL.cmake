@@ -47,6 +47,7 @@ find_path(OPENCL_INCLUDE_DIRS
   PATH_SUFFIXES include OpenCL/common/inc inc include/x86_64 include/x64
   PATHS ${OPENCL_PATHS}
   DOC "OpenCL include header OpenCL/cl.h or CL/cl.h"
+  NO_CMAKE_FIND_ROOT_PATH
 )
 mark_as_advanced(OPENCL_INCLUDE_DIRS)
 
@@ -57,6 +58,7 @@ find_library(OPENCL_LIBRARIES
   PATH_SUFFIXES lib lib64 lib/x86_64 lib/x86_64/sdk lib/x64 lib/x86 lib/Win32 OpenCL/common/lib/x64
   PATHS ${OPENCL_PATHS}
   DOC "OpenCL library"
+  NO_CMAKE_FIND_ROOT_PATH
 )
 mark_as_advanced(OPENCL_LIBRARIES)
 
