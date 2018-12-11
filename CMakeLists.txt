@@ -29,7 +29,7 @@ set(clblast_SOVERSION ${clblast_VERSION_MAJOR})
 # Options and their default values
 option(BUILD_SHARED_LIBS "Build a shared (ON) or static library (OFF)" ON)
 option(SAMPLES "Enable compilation of the examples" OFF)
-option(TUNERS "Enable compilation of the tuners" ON)
+option(TUNERS "Enable compilation of the tuners" OFF)
 option(CLIENTS "Enable compilation of the clients to test and compare performance" OFF)
 option(TESTS "Enable compilation of the correctness tests" OFF)
 option(CUBLAS "Enables performance comparison against cuBLAS on NVIDIA GPUs" OFF)
@@ -166,6 +166,13 @@ if(OPENCL)
   find_package(OpenCL REQUIRED)
   set(API_LIBRARIES ${OPENCL_LIBRARIES})
   set(API_INCLUDE_DIRS ${OPENCL_INCLUDE_DIRS})
+
+  if(${OPENCL_VERSION})
+    add_definitions(-DCL_TARGET_OPENCL_VERSION=${OPENCL_VERSION})
+  else()
+    add_definitions(-DCL_TARGET_OPENCL_VERSION=120)
+  endif()
+
 elseif(CUDA)
   # For CUDA, the "FindCUDA.cmake" is part of CMake
   find_package(CUDA REQUIRED)
